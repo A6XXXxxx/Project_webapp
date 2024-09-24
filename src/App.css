@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,157 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* General Styling */
+body {
+  margin: 0;
+  font-family: 'Prompt', sans-serif;
+  background-color: #f5ece4;
+}
+
+.homepage-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #8f5c3d;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  margin-left: 5px;
+}
+
+.menu {
+  list-style-type: none;
+  display: flex;
+}
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
+
+.auth-buttons {
+  display: flex;
+}
+
+.auth-button {
+  background-color: #d8b49c;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.auth-button:hover {
+  background-color: #b88460;
+}
+
+/* Main Section Styling */
+.main-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5ece4;
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.flower-image {
+  width: 80%;
+  border-radius: 15px;
+}
+
+.text-container {
+  flex: 1;
+  text-align: left;
+  background-color: #a47857;
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+.text-container h1 {
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.text-container p {
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-icons {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.order-button {
+  background-color: #d8b49c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.order-button:hover {
+  background-color: #b88460;
+}
+
+/* Scroll to Top Button */
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.scroll-top button {
+  background-color: #8f5c3d;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.scroll-top button:hover {
+  background-color: #b88460;
 }
