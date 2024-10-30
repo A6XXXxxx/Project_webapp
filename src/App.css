@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'Prompt', sans-serif;
+  font-family: 'IBM Plex Sans Thai', sans-serif;
   background-color: #f5ece4;
 }
 
@@ -27,8 +27,9 @@ body {
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+  font-family: "Titan One",sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
 }
 
 .menu {
@@ -39,6 +40,7 @@ body {
 
 .menu li {
   margin: 0 15px;
+  margin-top: 10px;
 }
 
 .menu li a {
@@ -53,6 +55,8 @@ body {
 }
 
 .auth-button {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 500;
   background-color: #f5ece4;
   border: none;
   color: #8f5c3d;
@@ -66,7 +70,6 @@ body {
   background-color: #b88460;
 }
 
-/* Main Section Styling */
 .main-section {
   display: flex;
   justify-content: center;
@@ -75,7 +78,6 @@ body {
   background-color: #f5ece4;
 }
 
-/* Login Page Styling */
 .login-container {
   display: flex;
   flex-direction: column;
@@ -99,7 +101,7 @@ body {
 .login-container input {
   margin-bottom: 15px;
   padding: 10px;
-  width: 250px; /* Set width as needed */
+  width: 250px; 
 }
 
 .login-container button {
@@ -115,7 +117,6 @@ body {
   background-color: #b88460;
 }
 
-/* Scroll to Top Button */
 .scroll-top {
   position: fixed;
   bottom: 20px;
