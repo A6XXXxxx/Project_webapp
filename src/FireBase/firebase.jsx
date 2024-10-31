@@ -1,6 +1,6 @@
 // นำเข้าโมดูล Firebase
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut as firebaseSignOut } from 'firebase/auth'; // นำเข้า signOut
 
 // Firebase configuration
 const firebaseConfig = {
@@ -21,11 +21,10 @@ const auth = getAuth(app);
 // Function for Google Sign-In
 export const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      console.log('User logged in: ', result.user);
-    })
-    .catch((error) => {
-      console.error('Error logging in: ', error);
-    });
+  return signInWithPopup(auth, provider); // เปลี่ยนให้ return result เพื่อให้ handle ได้ใน React
+};
+
+// เพิ่มฟังก์ชัน signOut
+export const signOut = () => {
+    return firebaseSignOut(auth); // เรียกใช้งานฟังก์ชัน signOut ของ Firebase
 };

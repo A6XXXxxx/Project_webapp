@@ -1,0 +1,127 @@
+.page-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.image-container {
+    position: relative;
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.side-image {
+    width: 550px;
+    height: 550px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.login-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-frame {
+    width: 100%;
+    max-width: 500px;
+    height: 250px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    border: 2.5px solid #8f5c3d;
+    padding: 20px;
+    margin-left: 150px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tabs-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tab {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.tab h2 {
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.register-tab h2 {
+    left: 12%; /* Move "สมัครบัญชีผู้ใช้" to the left */
+    transform: translateX(-10%);
+}
+
+.login-tab h2 {
+    right: 18%; /* Move "เข้าสู่ระบบ" to the right */
+    transform: translateX(10%);
+}
+
+.tab-content {
+    padding: 80px 20px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.clip-style-one {
+    clip-path: polygon(50% 0, 50% 30%, 100% 30%, 100% 100%, 0 100%, 0 0);
+    background-color: #E5D6C3;
+}
+
+.clip-style-two {
+    clip-path: polygon(50% 30%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
+    background-color: #E5D6C3;
+}
+
+.active {
+    z-index: 2;
+}
+
+.inactive {
+    z-index: 1;
+}
+
+.google-login {
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #8f5c3d;
+}
+
+.logout-button {
+    width: 250px;
+    height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #8f5c3d;
+    border-radius: 10px;
+    border: none;
+}
