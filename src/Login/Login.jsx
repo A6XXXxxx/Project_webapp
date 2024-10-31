@@ -82,10 +82,10 @@ const Login = () => {
                                 <div className={`tab ${selectedTab === 'register' ? 'clip-style-one active' : 'inactive'} register-tab`}>
                                     <h2 onClick={() => setSelectedTab('register')}>สมัครบัญชีผู้ใช้</h2>
                                     {selectedTab === 'register' && (
-                                        <div className="tab-content" style={{ marginTop: '40px' }}>
+                                        <div className="tab-content" style={{ marginTop: '100px' }}>
                                             <p>สมัครโดย</p>
                                             <button className="google-login" onClick={handleGoogleLogin}>
-                                                เข้าสู่ระบบด้วย
+                                                สมัครบัญชีผู้ใช้ด้วย
                                                 <img src="https://www.google.com/favicon.ico" alt="Google icon" />
                                             </button>
                                         </div>
@@ -94,7 +94,7 @@ const Login = () => {
                                 <div className={`tab ${selectedTab === 'login' ? 'clip-style-two active' : 'inactive'} login-tab`}>
                                     <h2 onClick={() => setSelectedTab('login')}>เข้าสู่ระบบ</h2>
                                     {selectedTab === 'login' && (
-                                        <div className="tab-content" style={{ marginTop: '40px' }}>
+                                        <div className="tab-content" style={{ marginTop: '100px' }}>
                                             <p>เข้าสู่ระบบโดย</p>
                                             <button className="google-login" onClick={handleGoogleLogin}>
                                                 เข้าสู่ระบบด้วย

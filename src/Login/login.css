@@ -2,20 +2,23 @@
     display: flex;
     height: 100vh;
     width: 100%;
+    font-family:"IBM Plex Sans Thai", sans-serif;
 }
 
 .image-container {
     position: relative;
-    flex: 0 0 40%;
+    flex: 0 0 30%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
+    border-radius: 20px;
 }
 
 .side-image {
-    width: 550px;
-    height: 550px;
+    margin-left: 150px;
+    width: 650px;
+    height: 650px;
     border-radius: 20px;
     object-fit: cover;
 }
@@ -25,17 +28,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: -650px;
+    /* margin-right: 300px; */
 }
 
 .side-frame {
-    width: 100%;
-    max-width: 500px;
-    height: 250px;
+    width: 550px;
     background-color: #ffffff;
     border-radius: 40px;
     border: 2.5px solid #8f5c3d;
     padding: 20px;
-    margin-left: 150px;
+    margin-left: 0px;
     position: relative;
     overflow: hidden;
 }
@@ -112,6 +115,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     border: 1px solid #8f5c3d;
+    font-family:"IBM Plex Sans Thai", sans-serif;
 }
 
 .logout-button {
