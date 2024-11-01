@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import './login.css';
 import { signInWithGoogle, signOut } from '../FireBase/firebase';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import DB from "../config";
 
 const Login = () => {
     const [user, setUser] = useState(null);
-    const [selectedTab, setSelectedTab] = useState('register'); // default to register tab
+    const [selectedTab, setSelectedTab] = useState('register');
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.body.style.overflow = "hidden"; // Prevent scrolling
+        document.body.style.overflow = "hidden";
         return () => {
-            document.body.style.overflow = "auto"; // Re-enable scrolling on unmount
+            document.body.style.overflow = "auto";
         };
     }, []);
 
@@ -22,19 +23,37 @@ const Login = () => {
             if (user) {
                 setUser(user);
             } else {
-                setUser(null); // Reset user state when logged out
-                setSelectedTab('register'); // Reset to the default tab
+                setUser(null);
+                setSelectedTab('register');
             }
         });
         return () => unsubscribe();
     }, []);
+
+    const saveEmailToDatabase = async (email) => {
+        try {
+            const response = await fetch(`${DB}check/saveEmail`, { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to save email');
+            }
+        } catch (error) {
+            console.error('Error saving email:', error);
+        }
+    };
 
     const handleGoogleLogin = async () => {
         try {
             const result = await signInWithGoogle();
             if (result.user) {
                 setUser(result.user);
-                navigate('/');
+                await saveEmailToDatabase(result.user.email); 
+                navigate('/'); // Redirect after login
             }
         } catch (error) {
             console.error('Error logging in: ', error);
@@ -44,7 +63,7 @@ const Login = () => {
     const handleLogout = async () => {
         try {
             await signOut();
-            setUser(null); // Reset user state
+            setUser(null);
             navigate('/login');
         } catch (error) {
             console.error('Error logging out: ', error);

@@ -1,0 +1,115 @@
+.buy-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 1200px;
+    font-size: 16px;
+    margin-top: 30px;
+    border: 1px solid #f5f5f5;
+    border-radius: 15px;
+}
+
+.reset-button {
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: #D5BB9C;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 15px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: #D5BB9C;
+}
+
+.content {
+    display: flex; /* Use flex to place sidebar and product list next to each other */
+    gap: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f5e3d5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 30px;
+}
+
+.sidebar h3, .sidebar h4 {
+    margin-bottom: 15px;
+    color: #5c3d2e;
+}
+
+.category label, .price-range label , .type-flower label{
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.category input[type="checkbox"], .price-range input[type="checkbox"], .type-flower input[type="checkbox"] {
+    margin-right: 10px; /* Optional: space between checkbox and label */
+}
+
+.category, .price-range , .type-flower {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.product-list {
+    margin-left: 30px;
+}
+
+.product-list h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #5c3d2e;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 200px;
+}
+
+.product-card h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+    color: #5c3d2e;
+}
+
+.product-card p {
+    font-size: 16px;
+    color: #a86422;
+}
