@@ -4,6 +4,7 @@ module.exports = {
   content: [
     // "./src/**/*.{js,jsx,ts,tsx}",
     "./src/HomePage/**/*.{js,jsx}", 
+    "./src/Admin/**/*.{js,jsx}", 
 
   ],
   theme: {

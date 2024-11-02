@@ -1,0 +1,60 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 20px;
+}
+
+.box-user-div {
+    border-radius: 50px;
+    border-color: #A9704D;
+    border-width: 20px;
+    border-style: solid; 
+    width: 1700px;
+    height: 720px;
+}
+
+.member {
+    background-color: #f0e5de;
+    width: 1350px;
+    height: 150px;
+    border-radius: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+    color: #A9704D;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.member:hover {
+    background-color: #f9f9f9;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.icon-crown {
+    margin-right: 20px;
+    font-size: 60px;
+    margin-left: 20px;
+    color: #A9704D;
+}
+
+.delete-icon {
+    color: #A9704D;
+    font-size: 40px;
+    cursor: pointer;
+    visibility: hidden;
+    margin-left: auto;
+}
+
+.member:hover .delete-icon {
+    visibility: visible;
+}

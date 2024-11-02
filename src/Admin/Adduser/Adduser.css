@@ -1,0 +1,54 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 20px;
+}
+
+.box-add-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px; 
+    border-radius: 50px;
+    border: 10px solid #A9704D;
+    width: 900px;
+    height: 350px;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    border: none; 
+    border-radius: 20px;
+    padding: 10px; 
+    color: #A9704D;
+    background-color: #FAF6F2;
+    font-weight: 700;
+    font-size: 28px;
+    font-family:"IBM Plex Sans Thai", sans-serif;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+  
+input.grow {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    padding: 5px;
+    font-size: 28px;
+    color: #A9704D;
+    font-family:"IBM Plex Sans Thai", sans-serif;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+  

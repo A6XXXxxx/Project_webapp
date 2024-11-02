@@ -13,6 +13,7 @@ import Orders from './Client/ListOrders/Orders';
 import User from './Admin/Profile/User_ad';
 import List_ad from './Admin/List_ad/List_ad';
 import Order_ad from './Admin/Order_ad/Order';
+import Adduser from './Admin/Adduser/Adduser';
 
 import { PiFlowerTulip } from "react-icons/pi";
 import "./App.css"; 
@@ -102,6 +103,7 @@ const App = () => {
             <Route path="/user" element={<User />} />
             <Route path="/list_ad" element={<List_ad />} />
             <Route path="/order_ad" element={<Order_ad />} />
+            <Route path="/adduser" element={<Adduser />} />
           </Routes>
         </div>
       </div>

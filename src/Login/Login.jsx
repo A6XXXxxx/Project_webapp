@@ -30,35 +30,36 @@ const Login = () => {
         return () => unsubscribe();
     }, []);
 
-    const saveEmailToDatabase = async (email) => {
+    const saveEmailToDatabase = async (email, displayName) => {
         try {
             const response = await fetch(`${DB}check/saveEmail`, { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, displayName }), 
             });
             if (!response.ok) {
-                throw new Error('Failed to save email');
+                throw new Error('Failed to save email and displayName');
             }
         } catch (error) {
-            console.error('Error saving email:', error);
+            console.error('Error saving email and displayName:', error);
         }
     };
+    
 
     const handleGoogleLogin = async () => {
         try {
             const result = await signInWithGoogle();
             if (result.user) {
                 setUser(result.user);
-                await saveEmailToDatabase(result.user.email); 
-                navigate('/'); // Redirect after login
+                await saveEmailToDatabase(result.user.email, result.user.displayName); // ส่ง displayName
+                navigate('/');
             }
         } catch (error) {
             console.error('Error logging in: ', error);
         }
-    };
+    };    
 
     const handleLogout = async () => {
         try {

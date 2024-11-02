@@ -63,7 +63,7 @@
 .curved-image-container {
     width: 30%; 
     height: 90%; 
-    border-radius: 50% 50% 30px 30px; /* ทำให้โค้งมนที่ด้านบน */
+    border-radius: 50% 50% 30px 30px; 
     overflow: hidden; 
     background-color: #f5f5f5; 
     display: flex;
@@ -79,25 +79,25 @@
 }
    
 .subtract-box-2 {
-    background-color: #8d5941; /* สีสีน้ำตาล */
+    background-color: #8d5941;
     color: white;
-    transition: background-color 0.3s ease; /* เพิ่มการเปลี่ยนแปลงสี */
+    transition: background-color 0.3s ease; 
   }
   
 .white-box {
-    background-color: white; /* สีขาวเมื่อคลิก */
-    color: #8d5941; /* เปลี่ยนสีตัวอักษรเป็นดำ */
+    background-color: white; 
+    color: #8d5941; 
 }
 
 .brown-box {
-    background-color: #f5ece4; /* สีสีน้ำตาล */
-    color:#8d5941; /* ตัวอักษรสีขาว */
+    background-color: #f5ece4; 
+    color:#8d5941; 
 }
 
 /* Tab buttons */
 .tab-button {
     font-family:"IBM Plex Sans Thai", sans-serif;
-    background: #E5D6C3; /* Default background */
+    background: #E5D6C3; 
     border: none;
     padding: 10px 20px;
     border-radius: 15px;
@@ -109,7 +109,7 @@
 }
 
 .tab-button.active {
-    background: #f5ece4; /* Active background */
+    background: #f5ece4; 
 }
 
 /* Footer */

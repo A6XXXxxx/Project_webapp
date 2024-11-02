@@ -111,6 +111,7 @@ const HomePage = () => {
               ของคุณในทุกโอกาสพิเศษ
             </p>
           </div>
+
           {/* Button */}
           <div style={{ textAlign:"right", marginRight:'30px'}}>
             <Link to="/buys" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -179,8 +180,8 @@ const HomePage = () => {
         <div className="footer-contact">
           <span className="contact-icon">📞</span> 
           <p>098-1238990</p>
-          <span className="address-icon">📍</span> 
-          <p>101 หมู่ 3 ตำบลทุ่งสุขลา อำเภอศรีราชา จังหวัดชลบุรี 80310</p>
+          <span className="address-icon"></span> 
+          <p>📍 101 หมู่ 3 ตำบลทุ่งสุขลา อำเภอศรีราชา จังหวัดชลบุรี 80310</p>
         </div>
       </footer>
     </div>
