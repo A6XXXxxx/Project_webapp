@@ -1,0 +1,57 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.box-user-track {
+    color: chocolate;
+    border-radius: 20px;
+    background-color: #FFF;
+    padding: 20px;
+    width: 1500px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.user-info,
+.timeline-section {
+    flex: 1;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.timeline {
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-content {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.timeline-item p {
+    margin: 0;
+}
+
+.check-icon {
+    color: green;
+    margin-left: 10px;
+}
