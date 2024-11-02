@@ -1,0 +1,8 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 20px;
+}

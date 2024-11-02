@@ -2,14 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Buy.css";
 
-const Buy = () => {
+const Buy = ({ addToCart }) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [priceRanges, setPriceRanges] = useState([]);
-    const [showOtherFlowers, setShowOtherFlowers] = useState(false); // State for showing other flowers
+    const [showOtherFlowers, setShowOtherFlowers] = useState(false);
 
-    // State for selected filters
     const [selectedCategories, setSelectedCategories] = useState(new Set());
     const [selectedPriceRanges, setSelectedPriceRanges] = useState(new Set());
 
@@ -20,12 +18,8 @@ const Buy = () => {
                 console.log('Fetched products:', response.data);
                 setProducts(response.data);
 
-                // Extract unique categories and price ranges from products
                 const uniqueCategories = Array.from(new Set(response.data.map(product => product.type)));
-                const uniquePriceRanges = Array.from(new Set(response.data.map(product => product.price_range)));
-
                 setCategories(uniqueCategories);
-                setPriceRanges(uniquePriceRanges);
             } catch (error) {
                 console.error('Error fetching products:', error);
             }
@@ -41,22 +35,33 @@ const Buy = () => {
         setSearchTerm("");
         setSelectedCategories(new Set());
         setSelectedPriceRanges(new Set());
-        setShowOtherFlowers(false); // Reset showing other flowers
+        setShowOtherFlowers(false);
     };
 
-    // Allowed flower names
     const allowedFlowerNames = ["กุหลาบ", "ทานตะวัน", "ทิวลิป", "เดซี่", "ไฮเดรนเยีย"];
+
+    const priceRanges = [
+        { label: '0 - 200', min: 0, max: 200 },
+        { label: '201 - 400', min: 201, max: 400 },
+        { label: '401 - 600', min: 401, max: 600 },
+        { label: '601 - 800', min: 601, max: 800 },
+    ];
 
     // Filter products based on selected filters
     const filteredProducts = products.filter(product => {
-        const matchesSearch = product.name_flower && product.name_flower.toLowerCase().includes(searchTerm.toLowerCase());
+        const flowerName = product.name_flower || "";
+
+        // Check if the flower name contains any of the allowed flower names
+        const matchesSearch = flowerName.includes(searchTerm) || allowedFlowerNames.some(allowed => flowerName.includes(allowed));
+
         const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(product.type);
-        const matchesPriceRange = selectedPriceRanges.size === 0 || selectedPriceRanges.has(product.price_range);
+        const matchesPriceRange = Array.from(selectedPriceRanges).every(range => {
+            const { min, max } = priceRanges[parseInt(range)];
+            return product.price >= min && product.price <= max;
+        });
+        const matchesFlowerType = showOtherFlowers || selectedCategories.has(flowerName) || allowedFlowerNames.some(allowed => flowerName.includes(allowed));
 
-        // Check if the flower name matches allowed names if not showing other flowers
-        const matchesFlowerType = showOtherFlowers || allowedFlowerNames.some(allowed => product.name_flower.includes(allowed));
-
-        return matchesSearch && matchesCategory && matchesPriceRange && matchesFlowerType;
+        return matchesSearch && matchesCategory && (selectedPriceRanges.size === 0 || matchesPriceRange) && matchesFlowerType;
     });
 
     // Handle checkbox change
@@ -72,6 +77,11 @@ const Buy = () => {
         });
     };
 
+    // Handle adding product to cart
+    const handleAddToCart = (product) => {
+        addToCart(product);
+    };
+
     return (
         <div className="buy-container">
             <div className="header">
@@ -85,8 +95,8 @@ const Buy = () => {
                 <button onClick={handleReset} className="reset-button">ล้าง</button>
             </div>
 
-            <div className="content-buy">
-                <div className="sidebar">
+            <div className="content" style={{flexDirection:'row', alignItems:'flex-start'}}>
+                <div className="sidebar" >
                     <h3>หมวดหมู่</h3>
                     <div className="category">
                         {categories.map(category => (
@@ -101,13 +111,13 @@ const Buy = () => {
                     </div>
                     <h4>ช่วงราคา</h4>
                     <div className="price-range">
-                        {priceRanges.map(range => (
-                            <label key={range}>
+                        {priceRanges.map((range, index) => (
+                            <label key={range.label}>
                                 <input
                                     type="checkbox"
-                                    onChange={() => handleCheckboxChange(setSelectedPriceRanges, range)}
+                                    onChange={() => handleCheckboxChange(setSelectedPriceRanges, index)}
                                 />
-                                {range}
+                                {range.label}
                             </label>
                         ))}
                     </div>
@@ -117,7 +127,7 @@ const Buy = () => {
                             <label key={flower}>
                                 <input
                                     type="checkbox"
-                                    disabled
+                                    onChange={() => handleCheckboxChange(setSelectedCategories, flower)}
                                 />
                                 {flower}
                             </label>
@@ -138,9 +148,23 @@ const Buy = () => {
                     <div className="products">
                         {filteredProducts.length > 0 ? (
                             filteredProducts.map(({ _id, ...product }) => (
-                                <div key={_id} className="product-card">
+                                <div className="product-card" key={_id}>
+                                    {product.image_url ? (
+                                        <img src={product.image_url} alt={product.name_flower} />
+                                    ) : (
+                                        <div className="image-placeholder">ไม่มีรูปภาพ</div>
+                                    )}
                                     <h3>{product.id} {product.name_flower}</h3>
-                                    <p>{product.price} บาท</p>
+                                    <p>{product.price} บาท</p> 
+                                    <div className="add-to-cart-overlay">
+                                        <div
+                                            className="overlay-content"
+                                            onClick={() => handleAddToCart(product)}
+                                        >
+                                            <i className="fas fa-shopping-cart"></i> 
+                                            หยิบใส่ตะกร้า
+                                        </div>
+                                    </div>
                                 </div>
                             ))
                         ) : (

@@ -86,7 +86,7 @@ const HomePage = () => {
         </div>
 
         <div className="back" style={{ position: "relative", zIndex: 0 }}>
-          <div className="subtract-box" style={{ display: 'flex', justifyContent: 'space-between', margin: '0 auto' }}>
+          <div className="subtract-box" style={{ display: 'flex', justifyContent: 'space-between', margin: '0 auto',marginTop:'20px' }}>
             <div style={{ display: 'flex', textAlign:"right" }}>
               <p style={{ margin: '0', marginLeft: '30px', marginTop:'30px', fontSize:18 }}>
                 FREE <br/> DELIVERY
@@ -113,11 +113,13 @@ const HomePage = () => {
           </div>
 
           {/* Button */}
-          <div style={{ textAlign:"right", marginRight:'30px'}}>
+          <div style={{ textAlign: "right", marginRight: '30px', marginTop: '-20px' }}>
             <Link to="/buys" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <button className="btn" style={{ borderRadius: '25px', background: '#f5ece4', width:'190px', fontSize:22, fontFamily:"Bai Jamjuree", height:'60px', boxShadow: 'inset 4px 4px 4px rgba(0, 0, 0, 0.25)' }}>สั่งซื้อตอนนี้</button> 
+              <button className="btn" style={{ borderRadius: '25px', background: '#f5ece4', width: '190px', fontSize: 22, fontFamily: "Bai Jamjuree", height: '60px', boxShadow: 'inset 4px 4px 4px rgba(0, 0, 0, 0.25)' }}>
+                สั่งซื้อตอนนี้
+              </button>
             </Link>
-          </div> 
+          </div>
         </div>
       </div>
       
