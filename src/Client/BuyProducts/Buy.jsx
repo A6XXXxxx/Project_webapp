@@ -1,20 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import Firebase auth functions
 import axios from "axios";
 import "./Buy.css";
+import DB from '../../config';
+import Swal from 'sweetalert2';
 
-const Buy = ({ addToCart }) => {
+
+const Buy = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [showOtherFlowers, setShowOtherFlowers] = useState(false);
-
     const [selectedCategories, setSelectedCategories] = useState(new Set());
     const [selectedPriceRanges, setSelectedPriceRanges] = useState(new Set());
+    const [addToCartSuccess, setAddToCartSuccess] = useState(false); 
+    const [addToCartError, setAddToCartError] = useState(''); 
+    const [userEmail, setUserEmail] = useState(null);
+
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUserEmail(user.email); 
+            } else {
+                setUserEmail(null); 
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/product/');
+                const response = await axios.get(`${DB}product`);
                 console.log('Fetched products:', response.data);
                 setProducts(response.data);
 
@@ -47,13 +65,10 @@ const Buy = ({ addToCart }) => {
         { label: '601 - 800', min: 601, max: 800 },
     ];
 
-    // Filter products based on selected filters
     const filteredProducts = products.filter(product => {
         const flowerName = product.name_flower || "";
 
-        // Check if the flower name contains any of the allowed flower names
         const matchesSearch = flowerName.includes(searchTerm) || allowedFlowerNames.some(allowed => flowerName.includes(allowed));
-
         const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(product.type);
         const matchesPriceRange = Array.from(selectedPriceRanges).every(range => {
             const { min, max } = priceRanges[parseInt(range)];
@@ -64,7 +79,6 @@ const Buy = ({ addToCart }) => {
         return matchesSearch && matchesCategory && (selectedPriceRanges.size === 0 || matchesPriceRange) && matchesFlowerType;
     });
 
-    // Handle checkbox change
     const handleCheckboxChange = (setter, value) => {
         setter(prev => {
             const updatedSet = new Set(prev);
@@ -77,9 +91,23 @@ const Buy = ({ addToCart }) => {
         });
     };
 
-    // Handle adding product to cart
-    const handleAddToCart = (product) => {
-        addToCart(product);
+    const handleAddToCart = async (product) => {
+        const dataToSend = {
+            id: product.id,
+            email: userEmail 
+        };
+
+        try {
+            const response = await axios.post(`${DB}basket/add_cart`, dataToSend);
+            console.log('Data sent to basket:', response.data);
+            setAddToCartSuccess(true); 
+            setAddToCartError(''); 
+            Swal.fire("Saved!", "", "success");
+        } catch (error) {
+            console.error('Error sending data to basket:', error);
+            setAddToCartError('เกิดข้อผิดพลาดในการเพิ่มสินค้าไปยังตะกร้า'); 
+            setAddToCartSuccess(false); 
+        }
     };
 
     return (
@@ -96,7 +124,7 @@ const Buy = ({ addToCart }) => {
             </div>
 
             <div className="content" style={{flexDirection:'row', alignItems:'flex-start'}}>
-                <div className="sidebar" >
+                <div className="sidebar">
                     <h3>หมวดหมู่</h3>
                     <div className="category">
                         {categories.map(category => (

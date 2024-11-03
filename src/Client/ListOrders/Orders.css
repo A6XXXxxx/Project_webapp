@@ -1,0 +1,64 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 30px; 
+    width: 1200px;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3);
+    background-color: #FAF6F2;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover; 
+    margin-right: 20px; 
+    border-radius: 20px;
+}
+
+.order-details {
+    flex: 1; 
+}
+
+.count-container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #FAF6F2;
+    width: 80px;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3);
+}
+
+.count-container button {
+    margin: 0 10px; 
+    background-color: #FAF6F2;
+    border: none;
+}
+
+.subtract-box-order {
+    position: absolute; /* Position it relative to the parent */
+    width: 150px; 
+    height: 150px; 
+    background-color: #f5ece4;  
+    position: absolute;
+    bottom: -15px; 
+    right: -15px;
+    border-radius: 20px; 
+}
