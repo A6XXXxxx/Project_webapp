@@ -5,6 +5,7 @@ import './Track.css';
 
 const Track = () => {
   const [userKey, setUserKey] = useState(null);
+  const [orders, setOrders] = useState([]);  // สำหรับเก็บคำสั่งซื้อทั้งหมด
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -22,6 +23,9 @@ const Track = () => {
           const matchedUser = data.find((u) => u.email && u.email.toLowerCase() === user.email.toLowerCase());
           if (matchedUser) {
             setUserKey(matchedUser);
+            // คัดกรองคำสั่งซื้อทั้งหมดที่เกี่ยวข้องกับผู้ใช้
+            const userOrders = data.filter((order) => order.email === matchedUser.email);
+            setOrders(userOrders);
           } else {
             setUserKey(null);
           }
@@ -75,19 +79,32 @@ const Track = () => {
   return (
     <div className="content">
       {userKey ? (
-        <div className="box-user-track" style={{ display: 'flex', flexDirection: 'row' }}>
-          <div className="user-info" style={{ flex: 1, padding: '20px' }}>
-            <p>Email: {userKey.email}</p>
-            <p>Details of Purchase: {userKey.details_purchase}</p>
-            <p>Recipient's Name: {userKey.first_des} {userKey.sur_des}</p>
-            <p>Delivery Date: {userKey.delivery_date}</p>
-            <p>Status: {userKey.status}</p>
-            <p>Shipping Information: {userKey.info_shipping}</p>
-          </div>
-          <div className="timeline-section" style={{ flex: 1, padding: '20px' }}>
-            <h2>Timeline การส่งของ</h2>
-            <Timeline events={shippingEvents} />
-          </div>
+        <div className="box-user-track">
+          <h2>คำสั่งซื้อของคุณ</h2>
+          {orders.length > 0 ? (
+            orders.map((order, index) => (
+              <div key={index} className="order-details" style={{ display: 'flex', flexDirection: 'row', marginBottom: '20px', padding: '10px', border: '1px solid #ccc' }}>
+                {/* กรอบข้อมูลคำสั่งซื้อ */}
+                <div className="user-info" style={{ flex: 1, padding: '10px' }}>
+                  <h3>คำสั่งซื้อที่ {index + 1}</h3>
+                  <p>Email: {order.email}</p>
+                  <p>Details of Purchase: {order.tel_des}</p>
+                  <p>Recipient's Name: {order.first_des} {order.last_des}</p>
+                  <p>Delivery Date: {order.delivery_date}</p>
+                  <p>Status: {order.address_des} {order.district} {order.province} {order.postalCode}</p>
+                  <p>Shipping Information: {order.info_shipping}</p>
+                </div>
+
+                {/* ส่วน Timeline ข้างๆ กรอบคำสั่งซื้อ */}
+                <div className="timeline-section" style={{ flex: 1, padding: '10px' }}>
+                  <h3>Timeline การส่งของ</h3>
+                  <Timeline events={shippingEvents} />
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>ยังไม่มีคำสั่งซื้อ</p>
+          )}
         </div>
       ) : (
         <p style={{ fontSize: '28px' }}>โปรดเข้าสู่ระบบ</p>

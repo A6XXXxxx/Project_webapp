@@ -34,7 +34,7 @@ const User_ad = () => {
   const handleDeleteUser = async (email) => {
     try {
       const response = await fetch(`${DB}check/deleteEmail_ad`, {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -45,7 +45,6 @@ const User_ad = () => {
         throw new Error('Failed to delete user');
       }
 
-      // ลบข้อมูลออกจาก state หลังจากลบสำเร็จ
       setUsers(users.filter(user => user.email !== email));
       alert('User deleted successfully');
     } catch (error) {

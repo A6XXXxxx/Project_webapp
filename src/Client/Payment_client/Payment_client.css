@@ -1,0 +1,153 @@
+/* Payment Content */
+.payment-content {
+    display: flex;
+    width: 1800px;
+    height: 750px;
+    padding: 10px;
+    background: #8D5941;
+    border-radius: 50px;
+    margin: 80px 40px 40px 40px;
+    color: #4a3427;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Left Section */
+.payment-left-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 15px;
+    width: 35%;
+    margin-left: 100px;
+
+}
+
+/* Payment Section Title */
+.payment-section-title {
+    background: #FAF6F2;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 22px;
+    color: #4a3427;
+    margin-bottom: 10px;
+}
+
+/* Payment Options */
+.payment-options {
+    background: #E5D6C3;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.payment-option:hover {
+    background-color: #e9dfd7;
+}
+
+.payment-radio {
+    margin-right: 10px;
+}
+
+.shipping-details {
+    background: #E5D6C3;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Details Row */
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    line-height: 0.6;
+}
+
+/* Right Section */
+.payment-right-section {
+    width: 30%; 
+    height: 500px;
+    background: #E5D6C3;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 300px;
+}
+
+.additional-info-title {
+    font-size: 1.2em;
+    color: #4a3427;
+    margin-bottom: 15px;
+}
+
+.payment-right-section {
+    padding: 20px;
+}
+
+.basket-item-card {
+    display: flex;
+    width: 500px;
+    height: 150px;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.item-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.item-price {
+    color: #888;
+    margin: 5px 0 0 0;
+    align-self: flex-end;
+}
+
+.confirm-button-container {
+    display: flex;
+    justify-content: center; 
+    margin-top: auto;
+    padding: 20px; 
+}
+
+.confirm-button {
+    background-color: #4a3427; 
+    color: white;
+    border: none; 
+    padding: 15px 30px; 
+    border-radius: 25px; 
+    cursor: pointer; 
+    font-size: 18px; 
+    transition: background-color 0.3s; 
+}
+
+.confirm-button:hover {
+    background-color: #5a4537; 
+}

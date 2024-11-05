@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; 
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./Orders.css"; 
 import DB from '../../config'; 
 import { GrCaretNext, GrTrash } from "react-icons/gr"; // Import trash icon
@@ -8,6 +9,7 @@ import { GrCaretNext, GrTrash } from "react-icons/gr"; // Import trash icon
 const Orders = () => {
     const [basketItems, setBasketItems] = useState([]); 
     const [userEmail, setUserEmail] = useState(null); 
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const auth = getAuth();
@@ -75,19 +77,31 @@ const Orders = () => {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (userEmail, id) => {
         try {
-            await axios.post(`${DB}basket/delall_cart`, {
-                email: userEmail,
-                id: id
+            const response = await fetch(`${DB}basket/delall_cart`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: userEmail, id: id }), 
             });
-            setBasketItems(prevItems => 
-                prevItems.filter(item => item.id !== id) 
-            );
-            console.log(`Deleted all items with ID: ${id}`);
+    
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Failed to delete item: ${errorText}`);
+            }
+    
+            setBasketItems(prevItems => prevItems.filter(item => item.id !== id));
+            alert('Item deleted successfully');
         } catch (error) {
-            console.error("Error deleting item:", error);
+            console.error('Error deleting item:', error);
+            alert(`Failed to delete item: ${error.message}`);
         }
+    };
+    
+    const handleNext = () => {
+        navigate('/info_client'); 
     };
 
     const totalPrice = basketItems.reduce((total, item) => total + item.price * item.count, 0);
@@ -113,7 +127,7 @@ const Orders = () => {
                                 <button onClick={() => handleIncrement(item.id)}>+</button>
                             </div>
                             <button 
-                                onClick={() => handleDelete(item.id)} 
+                                onClick={() => handleDelete(userEmail, item.id)} 
                                 style={{
                                     position: 'absolute', 
                                     top: '10px', 
@@ -133,7 +147,9 @@ const Orders = () => {
             </div>
             <div className="subtract-box-order">
                 <div style={{ width:'100px', height:'100px', background:'#8d5941', margin:'20px 0px 0px 20px', borderRadius:'20px', padding: '10px', color:'#f5ece4'}}>
-                    <GrCaretNext style={{fontSize:'48px', margin:'20px 0px 0px 30px'}} />
+                    <button onClick={handleNext} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+                        <GrCaretNext style={{fontSize:'48px', margin:'20px 0px 0px 30px'}} />
+                    </button>
                 </div>
             </div>
             <div style={{ 

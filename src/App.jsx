@@ -8,6 +8,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Buy from './Client/BuyProducts/Buy';
 import Track from './Client/Track/Track';
 import Orders from './Client/ListOrders/Orders';
+import InfoClient from './Client/Info_client/Info_client';
+import PaymentClient from './Client/Payment_client/Payment_client';
 
 // Admin
 import User from './Admin/Profile/User_ad';
@@ -100,6 +102,8 @@ const App = () => {
             <Route path="/buys" element={<Buy />} />
             <Route path="/tracks" element={<Track />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/info_client" element={<InfoClient />} />
+            <Route path="/payment_client" element={<PaymentClient />} />
 
             <Route path="/user" element={<User />} />
             <Route path="/list_ad" element={<List_ad />} />

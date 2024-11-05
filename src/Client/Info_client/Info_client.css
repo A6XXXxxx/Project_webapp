@@ -1,0 +1,17 @@
+@tailwind components;
+
+.content {
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input,textarea,select{
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    font-size: 24px;
+    font-family:"IBM Plex Sans Thai", sans-serif;
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.2);
+    border:none;
+}
